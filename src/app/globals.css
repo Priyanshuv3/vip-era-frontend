@@ -1,42 +1,225 @@
+/* Root variables for both light and dark themes */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #ff7a00;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-light: #f1f1f1;
+  --color-gray-dark: #2c2c2c;
+
+  /* Light Theme Colors */
+  --color-bg: var(--color-white);
+  --color-text: var(--color-black);
+  --color-input-bg: #f9f9f9;
+  --color-input-border: #cccccc;
+  --color-button-bg: var(--color-primary);
+  --color-button-text: var(--color-white);
+  --color-button-hover-bg: #e06700;
+  --color-button-disabled-bg: #ffe0c2;
+  --color-button-disabled-text: #aaaaaa;
+  --color-link: #ff7a00;
+  --color-link-hover: #d45f00;
+  --color-border: #dddddd;
+  --color-heading: #111111;
+  --color-selection-bg: #ff7a00;
+  --color-selection-text: #ffffff;
+  --color-scrollbar-bg: #e0e0e0;
+  --color-scrollbar-thumb: #ff7a00;
 }
 
+/* Manual theme switching via data-theme */
+[data-theme='dark'] {
+  --color-bg: #121212;
+  --color-text: #f5f5f5;
+  --color-input-bg: #1e1e1e;
+  --color-input-border: #444444;
+  --color-button-bg: var(--color-primary);
+  --color-button-text: var(--color-black);
+  --color-button-hover-bg: #e06700;
+  --color-button-disabled-bg: #333333;
+  --color-button-disabled-text: #888888;
+  --color-link: #ffa94d;
+  --color-link-hover: #ff8800;
+  --color-border: #333333;
+  --color-heading: #ffffff;
+  --color-selection-bg: #ff7a00;
+  --color-selection-text: #000000;
+  --color-scrollbar-bg: #2c2c2c;
+  --color-scrollbar-thumb: #ff7a00;
+}
+
+[data-theme='light'] {
+  --color-bg: var(--color-white);
+  --color-text: var(--color-black);
+  --color-input-bg: #f9f9f9;
+  --color-input-border: #cccccc;
+  --color-button-bg: var(--color-primary);
+  --color-button-text: var(--color-white);
+  --color-button-hover-bg: #e06700;
+  --color-button-disabled-bg: #ffe0c2;
+  --color-button-disabled-text: #aaaaaa;
+  --color-link: #ff7a00;
+  --color-link-hover: #d45f00;
+  --color-border: #dddddd;
+  --color-heading: #111111;
+  --color-selection-bg: #ff7a00;
+  --color-selection-text: #ffffff;
+  --color-scrollbar-bg: #e0e0e0;
+  --color-scrollbar-thumb: #ff7a00;
+}
+
+
+/* Dark theme overrides */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg: #121212;
+    --color-text: #f5f5f5;
+    --color-input-bg: #1e1e1e;
+    --color-input-border: #444444;
+    --color-button-bg: var(--color-primary);
+    --color-button-text: var(--color-black);
+    --color-button-hover-bg: #e06700;
+    --color-button-disabled-bg: #333333;
+    --color-button-disabled-text: #888888;
+    --color-link: #ffa94d;
+    --color-link-hover: #ff8800;
+    --color-border: #333333;
+    --color-heading: #ffffff;
+    --color-selection-bg: #ff7a00;
+    --color-selection-text: #000000;
+    --color-scrollbar-bg: #2c2c2c;
+    --color-scrollbar-thumb: #ff7a00;
   }
+}
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
 }
 
+main {
+  flex: 1 0 auto;
+  height: 80vh;
+  overflow-y: auto; /* optional */
+}
+
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 10px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+  margin-bottom: 0.5rem;
+}
+p {
+  margin-bottom: 1rem;
+}
+
+/* Links */
 a {
-  color: inherit;
+  color: var(--color-link);
   text-decoration: none;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
 }
+
+/* Buttons */
+button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: var(--color-button-hover-bg);
+}
+button:disabled {
+  background-color: var(--color-button-disabled-bg);
+  color: var(--color-button-disabled-text);
+  cursor: not-allowed;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-input-border);
+  padding: 0.6rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Form labels */
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Cards or containers */
+.card {
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
