@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Header() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('theme') || 'light';
+    const stored = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', stored);
     setTheme(stored);
   }, []);
@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <Link href="/" className={styles.brand}>VipEra</Link>
+        <Link href="/" className={styles.brand}>SangTiyaans</Link>
       </div>
 
       {/* Desktop nav */}
