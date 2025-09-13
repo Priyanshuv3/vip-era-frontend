@@ -4,11 +4,14 @@ import Footer from "./footer/Footer";
 import Loader from "./Loader/Loader";
 import MessageModal from "./MessageModal/MessageModal";
 import ConfirmationModal from "./ConfirmationModal/ConfirmationModal";
+import Dragon from "./Dragon/Dragon"
+
 export {
     Login,
     Header,
     Footer,
     Loader,
     MessageModal,
-    ConfirmationModal
+    ConfirmationModal,
+    Dragon,
 }
