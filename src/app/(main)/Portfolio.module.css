@@ -1,0 +1,351 @@
+.heroSection {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: var(--color-text);
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+
+  /* Mobile-friendly without media query */
+  flex-wrap: wrap;
+}
+
+.leftBlock {
+  flex: 1 1 400px;
+  min-width: 280px;
+}
+
+.smallText {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.mainTitle {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+}
+
+.description {
+  max-width: 500px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.buttonRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; /* prevents squeeze */
+  margin-bottom: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.primaryButton {
+  background: var(--color-primary);
+  color: var(--color-black);
+}
+
+.primaryButton:hover {
+  background: var(--color-primary-hover);
+}
+
+.secondaryButton {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.secondaryButton:hover {
+  background: var(--color-primary);
+  color: var(--color-black);
+}
+
+/* Socials */
+.socials {
+  display: flex;
+  gap: 1.3rem;
+}
+
+.socialIcon {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.socialIcon:hover {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+/* --- IMAGE SECTION / NO HOVER / NO FIXED SIZE --- */
+.rightBlock {
+  flex: 1 1 400px;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  order: -1;
+}
+
+.imageWrapper {
+  border-radius: 50%;
+  padding: 8px;
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+}
+
+/* Image — Always keeps original ratio */
+.heroImage {
+  width: 100%;
+  height: auto;         /* critical — prevents squeeze */
+  object-fit: contain;  /* keeps orientation & ratio */
+  border-radius: 18px;
+  display: block;
+  max-width: 500px;     /* gentle upper limit */
+filter:
+  drop-shadow(0 6px 18px rgba(0, 255, 136, 0.12))
+  drop-shadow(0 10px 32px rgba(0, 255, 136, 0.08));
+}
+
+
+/* ------------------------------------------------ */
+/* UNIVERSAL SECTIONS */
+/* ------------------------------------------------ */
+.section {
+  width: 100%;
+  padding: 6rem 2rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-heading);
+  margin-bottom: 2.5rem;
+}
+
+.sectionText {
+  max-width: 800px;
+  font-size: 1.2rem;
+  opacity: 0.85;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+
+/* ------------------------------------------------ */
+/* SKILLS SECTION */
+/* ------------------------------------------------ */
+.skillsGrid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.skillCard {
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+.skillCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+}
+
+.skillCard h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+.skillCard p {
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+
+/* ------------------------------------------------ */
+/* EXPERIENCE TIMELINE */
+/* ------------------------------------------------ */
+.timeline {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.timelineItem {
+  background: rgba(0, 255, 136, 0.03);
+  padding: 2rem;
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+  text-align: left;
+}
+
+.timelineItem:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.timelineItem h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading);
+}
+
+.timelineDuration {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.timelineItem ul {
+  padding-left: 1.2rem;
+}
+
+.timelineItem li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+
+/* ------------------------------------------------ */
+/* PROJECTS SECTION */
+/* ------------------------------------------------ */
+.projectsGrid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.projectCard {
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+  text-align: left;
+}
+
+.projectCard:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-5px);
+}
+
+.projectCard h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+.projectCard p {
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+
+/* ------------------------------------------------ */
+/* EDUCATION SECTION */
+/* ------------------------------------------------ */
+.educationList {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.educationItem {
+  padding: 2rem;
+  border-radius: 14px;
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+.educationItem:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.educationItem h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-heading);
+}
+
+.educationItem p {
+  opacity: 0.75;
+}
+
+
+/* ------------------------------------------------ */
+/* CONTACT SECTION */
+/* ------------------------------------------------ */
+.contactBox {
+  margin-top: 1rem;
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.contactBox p {
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.contactBox strong {
+  color: var(--color-primary);
+}

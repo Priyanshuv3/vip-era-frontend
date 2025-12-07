@@ -1,0 +1,29 @@
+:root {
+  /* Cinematic Dragon Theme Colors */
+  --dragon-bg: #020A02;
+  --dragon-bg-soft: #041f11;
+  --dragon-green: #00ff88;
+  --dragon-green-strong: #00cc66;
+  --dragon-glow-1: rgba(0, 255, 136, 0.25);
+  --dragon-glow-2: rgba(0, 184, 159, 0.22);
+
+  --dragon-text: #eafff3;
+}
+
+.dragon {
+  background: var(--dragon-bg);
+  color: var(--dragon-text);
+}
+
+.glow {
+  filter: drop-shadow(0 0 14px var(--dragon-glow-1))
+          drop-shadow(0 0 28px var(--dragon-glow-2));
+}
+
+.panel {
+  background: var(--dragon-bg-soft);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--dragon-green-strong);
+  transition: 0.3s ease;
+}

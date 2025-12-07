@@ -1,6 +1,13 @@
 /* Root variables for both light and dark themes */
 :root {
-  --color-primary: #ff7a00;
+  /* Core Colors (Extracted from portfolio) */
+  --color-primary: #00ff88; /* neon green */
+  --color-primary-hover: #00ffaa; /* lighter neon */
+  --color-accent-teal: #00b89f; /* teal glow */
+  --color-accent-deep-teal: #003b39; /* deep teal base */
+  --color-accent-purple: #6c4cff; /* purple glow */
+  --color-accent-pink: #ff9cc8; /* soft pink glow */
+
   --color-white: #ffffff;
   --color-black: #000000;
   --color-gray-light: #f1f1f1;
@@ -11,70 +18,94 @@
   --color-text: var(--color-black);
   --color-input-bg: #f9f9f9;
   --color-input-border: #cccccc;
+
   --color-button-bg: var(--color-primary);
   --color-button-text: var(--color-white);
-  --color-button-hover-bg: #e06700;
-  --color-button-disabled-bg: #ffe0c2;
-  --color-button-disabled-text: #aaaaaa;
-  --color-link: #ff7a00;
-  --color-link-hover: #d45f00;
+  --color-button-hover-bg: var(--color-primary-hover);
+  --color-button-disabled-bg: #e5fff4;
+  --color-button-disabled-text: #999999;
+
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-hover);
+
   --color-border: #dddddd;
   --color-heading: #111111;
-  --color-selection-bg: #ff7a00;
+
+  --color-selection-bg: var(--color-primary);
   --color-selection-text: #ffffff;
+
   --color-scrollbar-bg: #e0e0e0;
-  --color-scrollbar-thumb: #ff7a00;
-  
-  --green-text-color:rgba(13, 133, 116, 1);
+  --color-scrollbar-thumb: var(--color-primary);
+
+  /* Status Colors */
+  --green-text-color: rgba(13, 133, 116, 1);
   --green-background-color: rgba(205, 255, 247, 1);
 
-  --red-text-color:rgba(239, 56, 38, 1);
-  --red-background-color:rgba(255, 221, 218, 1);
+  --red-text-color: rgba(239, 56, 38, 1);
+  --red-background-color: rgba(255, 221, 218, 1);
 
-  --orange-text-color:rgba(253, 122, 0, 1);
-  --orange-background-color:rgba(255, 239, 224, 1);
+  --orange-text-color: rgba(253, 122, 0, 1);
+  --orange-background-color: rgba(255, 239, 224, 1);
 }
 
-/* Manual theme switching via data-theme */
+/* DARK THEME — pure black + neon green + teal glow */
 [data-theme='dark'] {
-  --color-bg: #121212;
-  --color-text: #f5f5f5;
-  --color-input-bg: #1e1e1e;
-  --color-input-border: #444444;
+  --color-bg: #000000; /* true black */
+  --color-text: #eafff5; /* very light mint */
+  --color-input-bg: #0d0d0d;
+  --color-input-border: #004d40; /* teal-ish border */
+
   --color-button-bg: var(--color-primary);
-  --color-button-text: var(--color-black);
-  --color-button-hover-bg: #e06700;
-  --color-button-disabled-bg: #333333;
-  --color-button-disabled-text: #888888;
-  --color-link: #ffa94d;
-  --color-link-hover: #ff8800;
-  --color-border: #333333;
-  --color-heading: #ffffff;
-  --color-selection-bg: #ff7a00;
+  --color-button-text: #000000;
+  --color-button-hover-bg: var(--color-primary-hover);
+  --color-button-disabled-bg: #1a1a1a;
+  --color-button-disabled-text: #777777;
+
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-hover);
+
+  --color-border: #005f55; /* deeper teal border */
+
+  --color-heading: #b4ffe4; /* soft neon green */
+
+  --color-selection-bg: var(--color-primary);
   --color-selection-text: #000000;
-  --color-scrollbar-bg: #2c2c2c;
-  --color-scrollbar-thumb: #ff7a00;
+
+  --color-scrollbar-bg: #0f0f0f;
+  --color-scrollbar-thumb: var(--color-primary);
 }
 
+/* LIGHT THEME */
 [data-theme='light'] {
   --color-bg: var(--color-white);
   --color-text: var(--color-black);
   --color-input-bg: #f9f9f9;
   --color-input-border: #cccccc;
+
   --color-button-bg: var(--color-primary);
-  --color-button-text: var(--color-white);
-  --color-button-hover-bg: #e06700;
-  --color-button-disabled-bg: #ffe0c2;
+  --color-button-text: #ffffff;
+  --color-button-hover-bg: var(--color-primary-hover);
+  --color-button-disabled-bg: #e5fff4;
   --color-button-disabled-text: #aaaaaa;
-  --color-link: #ff7a00;
-  --color-link-hover: #d45f00;
+
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-hover);
+
   --color-border: #dddddd;
   --color-heading: #111111;
-  --color-selection-bg: #ff7a00;
+
+  --color-selection-bg: var(--color-primary);
   --color-selection-text: #ffffff;
+
   --color-scrollbar-bg: #e0e0e0;
-  --color-scrollbar-thumb: #ff7a00;
+  --color-scrollbar-thumb: var(--color-primary);
 }
+
+
+
+
+
+
 
 
 
@@ -98,14 +129,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 85vh;
-  overflow-y: auto; /* optional */
 }
 
 
@@ -213,10 +236,3 @@ label {
 .mb-1 { margin-bottom: 0.25rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-3 { margin-bottom: 1rem; }
-
-
-@media (max-width: 768px) {
-  main {
-    height: 90dvh;
-  }
-}

@@ -1,0 +1,74 @@
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.upload {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  color: var(--color-text);
+}
+
+.previewContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.preview {
+  width: 280px;
+  border-radius: 12px;
+  margin-top: 10px;
+  background: var(--color-bg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-border);
+}
+
+.loading {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-accent-teal); /* only accent used */
+}
+
+.downloadBtn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+}
+
+.downloadBtn:hover {
+  background: var(--color-button-hover-bg);
+}
+
+.downloadBtn:disabled {
+  background: var(--color-button-disabled-bg);
+  color: var(--color-button-disabled-text);
+  cursor: not-allowed;
+}
