@@ -98,6 +98,10 @@
   transition: 0.3s ease;
 }
 
+.socialIcon svg {
+  width: 26px;
+  height: 26px;
+}
 .socialIcon:hover {
   opacity: 1;
   color: var(--color-primary);
