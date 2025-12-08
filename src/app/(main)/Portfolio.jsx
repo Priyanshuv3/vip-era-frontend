@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./Portfolio.module.css";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import Typewriter from "typewriter-effect";
+import { motion } from "framer-motion";
+
 
 export default function Portfolio() {
   return (
@@ -12,24 +14,33 @@ export default function Portfolio() {
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.leftBlock}>
-            <h3 className={styles.smallText}>Hey, I'm</h3>
-            <h1 className={styles.mainTitle}>
-              <Typewriter
-                options={{
-                  strings: [
-                    "Priyanshu Verma",
-                    "Full-Stack Developer",
-                    "Frontend Engineer",
-                    "Next.js + Django Specialist",
-                    "Performance-Focused Developer"
-                  ],
-                  autoStart: true,
-                  loop: true,
-                  delay: 45,
-                  deleteSpeed: 30,
-                }}
-              />
-            </h1>
+            <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  className={styles.leftBlock}
+>
+  <h3 className={styles.smallText}>Hey, I'm</h3>
+
+  <h1 className={styles.mainTitleGradient}>
+    <Typewriter
+      options={{
+        strings: [
+          "Priyanshu Verma",
+          "Full-Stack Developer",
+          "Frontend Engineer",
+          "Next.js + Django Specialist",
+          "Performance-Focused Developer"
+        ],
+        autoStart: true,
+        loop: true,
+        delay: 45,
+        deleteSpeed: 30,
+      }}
+    />
+  </h1>
+</motion.div>
+
 
             <p className={styles.description}>
               Full-Stack Developer (Frontend-leaning) with expertise in building
