@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./Portfolio.module.css";
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
+import Typewriter from "typewriter-effect";
 
 export default function Portfolio() {
   return (
@@ -12,7 +13,23 @@ export default function Portfolio() {
         <div className={styles.container}>
           <div className={styles.leftBlock}>
             <h3 className={styles.smallText}>Hey, I'm</h3>
-            <h1 className={styles.mainTitle}>Priyanshu Verma</h1>
+            <h1 className={styles.mainTitle}>
+              <Typewriter
+                options={{
+                  strings: [
+                    "Priyanshu Verma",
+                    "Full-Stack Developer",
+                    "Frontend Engineer",
+                    "Next.js + Django Specialist",
+                    "Performance-Focused Developer"
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  delay: 45,
+                  deleteSpeed: 30,
+                }}
+              />
+            </h1>
 
             <p className={styles.description}>
               Full-Stack Developer (Frontend-leaning) with expertise in building
