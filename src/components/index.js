@@ -5,7 +5,7 @@ import Loader from "./Loader/Loader";
 import MessageModal from "./MessageModal/MessageModal";
 import ConfirmationModal from "./ConfirmationModal/ConfirmationModal";
 import Dragon from "./Dragon/Dragon"
-
+import ToolCategoryGrid from "./ToolCategoryGrid/ToolCategoryGrid";
 export {
     Login,
     Header,
@@ -14,4 +14,6 @@ export {
     MessageModal,
     ConfirmationModal,
     Dragon,
+    ToolCategoryGrid
+    
 }

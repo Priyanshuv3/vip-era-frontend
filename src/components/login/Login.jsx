@@ -17,7 +17,7 @@ export default function Login() {
   const handleSubmit =(e)=>{
     e.preventDefault()
     if (credentials.email && credentials.password) {
-      if(credentials.email === 'sangtiyaan@gmail.com' && credentials.password === 'sangtiyaan'){
+      if(credentials.email === 'brahmastra@gmail.com' && credentials.password === 'brahmastra'){
         dispatch(setMessageModal({show:true,message:"Login Successful",type:"success"}))
       }
       else{

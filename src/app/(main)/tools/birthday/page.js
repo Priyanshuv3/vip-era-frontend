@@ -1,9 +1,9 @@
 "use client";
+import { birthday_tools } from "@/utils/category_data";
 import { ToolCategoryGrid } from "@/components";
-import { landing_tools } from "@/utils/category_data";
 
 export default function ToolsPage() {
   return (
-    <ToolCategoryGrid category={landing_tools} />
+      <ToolCategoryGrid category={birthday_tools}/>
   );
 }

@@ -1,24 +1,37 @@
-/* Root variables for both light and dark themes */
+/* ================================================= */
+/* ROOT TOKENS — SHARED ACROSS LIGHT & DARK */
+/* ================================================= */
 :root {
-  /* Core Colors (Extracted from portfolio) */
-  --color-primary: #00ff88; /* neon green */
-  --color-primary-hover: #00ffaa; /* lighter neon */
-  --color-accent-teal: #00b89f; /* teal glow */
-  --color-accent-deep-teal: #003b39; /* deep teal base */
-  --color-accent-purple: #6c4cff; /* purple glow */
-  --color-accent-pink: #ff9cc8; /* soft pink glow */
+  /* ---------------- CORE BRAND COLORS ---------------- */
+  --color-primary: #007A66;
+  --color-primary-hover: #009478;
+  --color-accent-teal: #0EA37A;
+  --color-accent-deep-teal: #114843;
+  --color-accent-purple: #6c4cff;
+  --color-accent-pink: #ff9cc8;
 
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-gray-light: #f1f1f1;
-  --color-gray-dark: #2c2c2c;
 
-  /* Light Theme Colors */
+  --color-gray-light: #f1f5f5;
+  --color-gray-dark: #1b1f1f;
+
+  /* ---------------- SURFACES & TEXT ---------------- */
+  --color-bg-soft: #FAFCFB;
+  --color-surface: #ffffff;
+  --color-border-soft: #E6F6F2;
+  --color-text-muted: #4B5D5A;
+
+  /* ---------------- DEFAULT (BASE) ---------------- */
   --color-bg: var(--color-white);
   --color-text: var(--color-black);
+  --color-heading: #111111;
+  --color-border: #dddddd;
+
   --color-input-bg: #f9f9f9;
   --color-input-border: #cccccc;
 
+  /* ---------------- BUTTONS & LINKS ---------------- */
   --color-button-bg: var(--color-primary);
   --color-button-text: var(--color-white);
   --color-button-hover-bg: var(--color-primary-hover);
@@ -28,16 +41,14 @@
   --color-link: var(--color-primary);
   --color-link-hover: var(--color-primary-hover);
 
-  --color-border: #dddddd;
-  --color-heading: #111111;
-
+  /* ---------------- SELECTION & SCROLLBAR ---------------- */
   --color-selection-bg: var(--color-primary);
   --color-selection-text: #ffffff;
 
   --color-scrollbar-bg: #e0e0e0;
   --color-scrollbar-thumb: var(--color-primary);
 
-  /* Status Colors */
+  /* ---------------- STATUS COLORS ---------------- */
   --green-text-color: rgba(13, 133, 116, 1);
   --green-background-color: rgba(205, 255, 247, 1);
 
@@ -46,92 +57,147 @@
 
   --orange-text-color: rgba(253, 122, 0, 1);
   --orange-background-color: rgba(255, 239, 224, 1);
+
+  /* ================================================= */
+  /* NEW SYSTEM TOKENS (IMPORTANT ADDITIONS) */
+  /* ================================================= */
+
+  /* ---- Radius scale ---- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* ---- Shadows & Elevation ---- */
+  --shadow-xs: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.16);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.22);
+
+  /* Teal glow used across landing / portfolio / tools */
+  --shadow-glow-teal:
+    0 0 24px color-mix(in srgb, var(--color-primary) 30%, transparent),
+    0 0 48px color-mix(in srgb, var(--color-primary) 18%, transparent);
+
+  /* ---- Motion ---- */
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+  --duration-slow: 600ms;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Focus Ring (Accessibility) ---- */
+  --focus-ring:
+    0 0 0 3px color-mix(in srgb, var(--color-primary) 40%, transparent);
+
+  /* ---- Gradients (reusable) ---- */
+  --gradient-primary: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-primary-hover)
+  );
+
+  --gradient-soft: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-primary) 12%, transparent),
+    transparent
+  );
+
+  /* ---- Z-Index Layers ---- */
+  --z-base: 1;
+  --z-content: 10;
+  --z-overlay: 50;
+  --z-modal: 100;
+  --z-toast: 200;
 }
 
-/* DARK THEME — pure black + neon green + teal glow */
+/* ================================================= */
+/* DARK THEME — Black + Mint/Teal */
+/* ================================================= */
 [data-theme='dark'] {
-  --color-bg: #000000; /* true black */
-  --color-text: #eafff5; /* very light mint */
-  --color-input-bg: #0d0d0d;
-  --color-input-border: #004d40; /* teal-ish border */
+  --color-bg: #000000;
+  --color-text: #eafff5;
+  --color-heading: #b4ffe4;
 
-  --color-button-bg: var(--color-primary);
+  --color-input-bg: #0d0d0d;
+  --color-input-border: #00564c;
+
+  --color-border: #005f55;
+
   --color-button-text: #000000;
-  --color-button-hover-bg: var(--color-primary-hover);
   --color-button-disabled-bg: #1a1a1a;
   --color-button-disabled-text: #777777;
 
-  --color-link: var(--color-primary);
-  --color-link-hover: var(--color-primary-hover);
-
-  --color-border: #005f55; /* deeper teal border */
-
-  --color-heading: #b4ffe4; /* soft neon green */
-
-  --color-selection-bg: var(--color-primary);
   --color-selection-text: #000000;
 
   --color-scrollbar-bg: #0f0f0f;
-  --color-scrollbar-thumb: var(--color-primary);
 }
 
-/* LIGHT THEME */
+/* ================================================= */
+/* LIGHT THEME — Soft Teal Professional */
+/* ================================================= */
 [data-theme='light'] {
-  --color-bg: var(--color-white);
-  --color-text: var(--color-black);
-  --color-input-bg: #f9f9f9;
-  --color-input-border: #cccccc;
+  --color-bg: var(--color-bg-soft);
+  --color-text: #0B1A18;
+  --color-heading: #0B1A18;
 
-  --color-button-bg: var(--color-primary);
+  --color-input-bg: #ffffff;
+  --color-input-border: #cfe7e2;
+
+  --color-border: var(--color-border-soft);
+
   --color-button-text: #ffffff;
-  --color-button-hover-bg: var(--color-primary-hover);
-  --color-button-disabled-bg: #e5fff4;
-  --color-button-disabled-text: #aaaaaa;
+  --color-button-disabled-bg: #dff7f2;
+  --color-button-disabled-text: #9aa7a6;
 
-  --color-link: var(--color-primary);
-  --color-link-hover: var(--color-primary-hover);
-
-  --color-border: #dddddd;
-  --color-heading: #111111;
-
-  --color-selection-bg: var(--color-primary);
-  --color-selection-text: #ffffff;
-
-  --color-scrollbar-bg: #e0e0e0;
-  --color-scrollbar-thumb: var(--color-primary);
+  --color-scrollbar-bg: #dfe7e6;
 }
 
 
-
-
-
-
-
-
-
-
-/* Global styles */
+/* ----- RESET ----- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
+/* ----- BASE HTML ----- */
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+/* ----- BASE BODY ----- */
 body {
+  height: 100%;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Segoe UI', sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* ----- THEME TRANSITION ----- */
+[data-theme="light"],
+[data-theme="dark"] {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Layout structure */
+.layout-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.layout-main {
+  min-height: calc(100vh - 20vh);
+}
+
+/* Selection */
 ::selection {
   background: var(--color-selection-bg);
   color: var(--color-selection-text);
@@ -170,23 +236,36 @@ a:hover {
 
 /* Buttons */
 button {
-  background-color: var(--color-button-bg);
+  background: linear-gradient(
+    90deg,
+    var(--color-button-grad-1),
+    var(--color-button-grad-2)
+  );
   color: var(--color-button-text);
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px; /* pill button */
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  box-shadow:
+    0 4px 12px var(--color-button-shadow),
+    0 0 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
+
 button:hover {
-  background-color: var(--color-button-hover-bg);
+  opacity: 0.92;
+  transform: translateY(-1px);
 }
+
 button:disabled {
-  background-color: var(--color-button-disabled-bg);
+  background: #dff7f2;
   color: var(--color-button-disabled-text);
   cursor: not-allowed;
+  box-shadow: none;
 }
+
 
 /* Inputs */
 input,
@@ -208,7 +287,7 @@ select:focus {
   border-color: var(--color-primary);
 }
 
-/* Form labels */
+/* Form Labels */
 label {
   display: block;
   margin-bottom: 0.4rem;
@@ -216,7 +295,7 @@ label {
   font-weight: 500;
 }
 
-/* Cards or containers */
+/* Cards */
 .card {
   background-color: var(--color-input-bg);
   border: 1px solid var(--color-border);
@@ -227,9 +306,7 @@ label {
 }
 
 /* Utility classes */
-.text-center {
-  text-align: center;
-}
+.text-center { text-align: center; }
 .mt-1 { margin-top: 0.25rem; }
 .mt-2 { margin-top: 0.5rem; }
 .mt-3 { margin-top: 1rem; }

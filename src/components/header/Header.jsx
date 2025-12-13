@@ -16,14 +16,13 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <Link href="/" className={styles.brand}>Portfolio</Link>
+        <Link href="/" className={styles.brand}>Brahmastra</Link>
       </div>
 
       {/* Desktop nav */}
       <nav className={styles.desktopNav}>
         <Link href="/">Home</Link>
         <Link href="/tools">Tools</Link>
-        <Link href="/birthday">Birthday</Link>
         <Link href="/login">Sign Up</Link>
 
         <button onClick={toggleTheme} className={styles.themeToggle}>
@@ -45,7 +44,6 @@ export default function Header() {
         <div className={styles.mobileMenu}>
           <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link href="/tools" onClick={() => setMenuOpen(false)}>Tools</Link>
-          <Link href="/birthday" onClick={() => setMenuOpen(false)}>Birthday</Link>
           <Link href="/login" onClick={() => setMenuOpen(false)}>Sign up</Link>
 
           <button

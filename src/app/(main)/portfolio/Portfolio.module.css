@@ -41,11 +41,11 @@
 .mainTitleGradient {
 font-size: 2.5rem;
 font-weight: 800;
-background: linear-gradient(90deg, #00ff88, #00ffaa, #00c4ff);
+background: linear-gradient(90deg, #3ec3ae, #7fdbd0);
 background-size: 280% 280%;
 background-clip: text;
 color: transparent;
-animation: textGradient 8s ease infinite;
+animation: textGradient 14s ease infinite;
 margin-bottom: 2rem;
 }
 
@@ -136,7 +136,7 @@ margin-bottom: 2rem;
 .imageWrapper {
   border-radius: 50%;
   padding: 8px;
-  border: 1px solid rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(67, 200, 177, 0.18);
   backdrop-filter: blur(4px);
   overflow: hidden;
 }
@@ -150,8 +150,8 @@ margin-bottom: 2rem;
   display: block;
   max-width: 500px;     /* gentle upper limit */
 filter:
-  drop-shadow(0 6px 18px rgba(0, 255, 136, 0.12))
-  drop-shadow(0 10px 32px rgba(0, 255, 136, 0.08));
+  drop-shadow(0 6px 18px rgba(67, 200, 177, 0.18))
+drop-shadow(0 12px 32px rgba(67, 200, 177, 0.12));
 }
 
 
@@ -170,7 +170,7 @@ filter:
 }
 
 .sectionTitle {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 800;
   color: var(--color-heading);
   margin-bottom: 2.5rem;
@@ -197,8 +197,8 @@ filter:
 }
 
 .skillCard {
-  background: rgba(0, 255, 136, 0.04);
-  border: 1px solid rgba(0, 255, 136, 0.15);
+  background: rgba(67, 200, 177, 0.05);
+  border: 1px solid rgba(67, 200, 177, 0.18);
   padding: 2rem;
   border-radius: 16px;
   backdrop-filter: blur(6px);
@@ -207,7 +207,7 @@ filter:
 
 .skillCard:hover {
   transform: translateY(-5px);
-  border-color: var(--color-primary);
+  border-color: rgba(67, 200, 177, 0.45);
 }
 
 .skillCard h3 {
@@ -244,7 +244,7 @@ filter:
 }
 
 .timelineItem:hover {
-  border-color: var(--color-primary);
+  border-color: rgba(67, 200, 177, 0.45);
   transform: translateY(-4px);
 }
 
@@ -283,8 +283,8 @@ filter:
 }
 
 .projectCard {
-  background: rgba(0, 255, 136, 0.04);
-  border: 1px solid rgba(0, 255, 136, 0.15);
+  background: rgba(67, 200, 177, 0.05);
+  border: 1px solid rgba(67, 200, 177, 0.18);
   padding: 2rem;
   border-radius: 16px;
   backdrop-filter: blur(6px);
@@ -293,7 +293,7 @@ filter:
 }
 
 .projectCard:hover {
-  border-color: var(--color-primary);
+  border-color: rgba(67, 200, 177, 0.45);
   transform: translateY(-5px);
 }
 
@@ -324,14 +324,14 @@ filter:
 .educationItem {
   padding: 2rem;
   border-radius: 14px;
-  background: rgba(0, 255, 136, 0.04);
+  background: rgba(67, 200, 177, 0.05);
   border: 1px solid rgba(0, 255, 136, 0.12);
   backdrop-filter: blur(6px);
   transition: 0.3s ease;
 }
 
 .educationItem:hover {
-  border-color: var(--color-primary);
+  border-color: rgba(67, 200, 177, 0.45);
   transform: translateY(-4px);
 }
 
@@ -351,8 +351,8 @@ filter:
 /* ------------------------------------------------ */
 .contactBox {
   margin-top: 1rem;
-  background: rgba(0, 255, 136, 0.04);
-  border: 1px solid rgba(0, 255, 136, 0.15);
+  background: rgba(67, 200, 177, 0.05);
+  border: 1px solid rgba(67, 200, 177, 0.18);
   padding: 2rem;
   border-radius: 16px;
   backdrop-filter: blur(6px);
