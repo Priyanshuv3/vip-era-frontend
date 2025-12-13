@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "./providers";
 import { ThemeProvider } from "next-themes";
 import PropTypes from "prop-types";
+import ClientShell from "./ClientShell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="dark">
           <Providers>
-            <main>{children}</main>
+            <ClientShell>
+              <main>{children}</main>
+            </ClientShell>
           </Providers>
         </ThemeProvider>
       </body>
