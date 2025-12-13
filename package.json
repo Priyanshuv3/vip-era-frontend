@@ -2,10 +2,12 @@
   "name": "vipera-frontend",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.12.0",
+
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev --webpack",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint"
   },
