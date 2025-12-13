@@ -1,12 +1,7 @@
-.footer p {
-  color: var(--color-text);
-  font-size: 0.9rem;
-}
-  
 .footer {
   background-color: var(--color-input-bg);
-border-top: 1px solid var(--color-border);
-padding: 4rem 2rem 2rem;
+  border-top: 1px solid var(--color-border);
+  padding: 4rem 2rem 2rem;
 }
 
 .footerGrid {
@@ -17,8 +12,58 @@ padding: 4rem 2rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+/* Brand block */
+.brand h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer p {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Footer columns */
+.footerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footerBlock h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Links */
+.footerBlock a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  opacity: 0.8;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footerBlock a:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* Icons */
+.footerBlock svg {
+  font-size: 0.95rem;
+  color: var(--color-primary);
+}
+
+/* Bottom strip */
 .footerBottom {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
+  font-size: 0.85rem;
   opacity: 0.6;
 }

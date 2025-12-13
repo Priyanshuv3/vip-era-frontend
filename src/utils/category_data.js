@@ -40,7 +40,7 @@ export const landing_tools = {
       href: "/tools/music",
     },
     {
-      title: "Janmāstra 🎉",
+      title: "Birthday Tools",
       description: "Celebrate birthdays with joyful and creative tools.",
       Icon: BirthdayIcon,
       href: "/tools/birthday",
