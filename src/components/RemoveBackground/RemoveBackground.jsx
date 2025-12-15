@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import styles from "./remove-background.module.css";
 import { removeBackground } from "@imgly/background-removal";
+import { useDispatch } from "react-redux";
+import { setLoadingModal } from "@/redux/reducers/commonModalSlice";
 
 export default function RemoveBackground() {
   const [originalImage, setOriginalImage] = useState(null);
   const [processedImage, setProcessedImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -16,7 +19,7 @@ export default function RemoveBackground() {
     setOriginalImage(URL.createObjectURL(file));
 
     try {
-      setLoading(true);
+      dispatch(setLoadingModal(true))
 
       const resultBlob = await removeBackground(file, {
         output: {
@@ -29,7 +32,7 @@ export default function RemoveBackground() {
     } catch (err) {
       console.error("Background removal failed:", err);
     } finally {
-      setLoading(false);
+      dispatch(setLoadingModal(false));
     }
   };
 
@@ -62,7 +65,7 @@ export default function RemoveBackground() {
         )}
 
         {processedImage && (
-          <div>
+          <div className={styles.finalContainer}>
             <h3>Background Removed</h3>
             <img
               src={processedImage}
@@ -70,7 +73,7 @@ export default function RemoveBackground() {
               alt="result"
             />
 
-            <button className={styles.downloadBtn} onClick={downloadImage}>
+            <button onClick={downloadImage}>
               Download PNG
             </button>
           </div>

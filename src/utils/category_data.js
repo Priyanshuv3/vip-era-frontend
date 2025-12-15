@@ -74,7 +74,7 @@ export const image_tools = {
       title: "Image Upscaler",
       description: "Increase image resolution without losing quality.",
       Icon: ImageIcon,
-      href: "/tools/image/upscale",
+      href: "/tools/image/upscale-image",
     },
     {
       title: "Magic Eraser",
@@ -194,10 +194,10 @@ export const music_tools = {
 
   tools: [
     {
-      title: "Audio Converter",
-      description: "Convert audio between MP3, WAV, and more.",
+      title: "Typing Strings",
+      description: "Play music using your keyboard.",
       Icon: MusicIcon,
-      href: "/tools/music/convert",
+      href: "/tools/music/typing-strings",
     },
     {
       title: "Audio Trimmer",

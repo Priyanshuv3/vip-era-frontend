@@ -6,6 +6,7 @@ import MessageModal from "./MessageModal/MessageModal";
 import ConfirmationModal from "./ConfirmationModal/ConfirmationModal";
 import Dragon from "./Dragon/Dragon"
 import ToolCategoryGrid from "./ToolCategoryGrid/ToolCategoryGrid";
+import TypingStrings from "./TypingStrings/TypingStrings";
 export {
     Login,
     Header,
@@ -14,6 +15,6 @@ export {
     MessageModal,
     ConfirmationModal,
     Dragon,
-    ToolCategoryGrid
-    
+    ToolCategoryGrid,
+    TypingStrings,
 }

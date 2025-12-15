@@ -4,7 +4,6 @@ import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
 
-
 export default function Portfolio() {
   return (
     <>
@@ -15,32 +14,31 @@ export default function Portfolio() {
         <div className={styles.container}>
           <div className={styles.leftBlock}>
             <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-  className={styles.leftBlock}
->
-  <h3 className={styles.smallText}>Hey, I'm</h3>
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className={styles.leftBlock}
+            >
+              <h3 className={styles.smallText}>Hey, I'm</h3>
 
-  <h1 className={styles.mainTitleGradient}>
-    <Typewriter
-      options={{
-        strings: [
-          "Priyanshu Verma",
-          "Full-Stack Developer",
-          "Frontend Engineer",
-          "Next.js + Django Specialist",
-          "Performance-Focused Developer"
-        ],
-        autoStart: true,
-        loop: true,
-        delay: 45,
-        deleteSpeed: 30,
-      }}
-    />
-  </h1>
-</motion.div>
-
+              <h1 className={styles.mainTitleGradient}>
+                <Typewriter
+                  options={{
+                    strings: [
+                      "Priyanshu Verma",
+                      "Full-Stack Developer",
+                      "Frontend Engineer",
+                      "Next.js + Django Specialist",
+                      "Performance-Focused Developer",
+                    ],
+                    autoStart: true,
+                    loop: true,
+                    delay: 45,
+                    deleteSpeed: 30,
+                  }}
+                />
+              </h1>
+            </motion.div>
 
             <p className={styles.description}>
               Full-Stack Developer (Frontend-leaning) with expertise in building
@@ -77,15 +75,6 @@ export default function Portfolio() {
                 className={styles.socialIcon}
               >
                 <FaLinkedin />
-              </a>
-
-              <a
-                href="https://github.com/priyanshuv3"
-                target="_blank"
-                rel="noreferrer"
-                className={styles.socialIcon}
-              >
-                <FaGithub />
               </a>
             </div>
           </div>
@@ -157,14 +146,14 @@ export default function Portfolio() {
           <div className={styles.skillCard}>
             <h3>DevOps & Infrastructure</h3>
             <p>
-              OpenTofu/Terraform, k6 Load Testing, AWS (EC2, S3, VPC, Route 53,
+              OpenTofu/Terraform, k6 Load Testing, AWS (EC2, ECS, S3, VPC, Route 53,
               CloudFront), CI/CD, Docker, Portainer
             </p>
           </div>
 
           <div className={styles.skillCard}>
             <h3>Tools</h3>
-            <p>Git, GitHub, GitLab, Postman, pgAdmin, Lighthouse, VSCode</p>
+            <p>Git, GitHub, GitLab, Postman, Putty, pgAdmin, Lighthouse, VSCode</p>
           </div>
         </div>
       </section>
@@ -304,9 +293,6 @@ export default function Portfolio() {
         <div className={styles.contactBox}>
           <p>
             <strong>Email:</strong> priyanshuv3@gmail.com
-          </p>
-          <p>
-            <strong>GitHub:</strong> github.com/priyanshuv3
           </p>
           <p>
             <strong>LinkedIn:</strong> linkedin.com/in/priyanshuv3

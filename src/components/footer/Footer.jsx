@@ -1,6 +1,5 @@
 import styles from "./footer.module.css";
 import {
-  FaGithub,
   FaLinkedin,
   FaImage,
   FaFilePdf,
@@ -46,13 +45,6 @@ export default function Footer() {
         {/* Social */}
         <div className={styles.footerBlock}>
           <h4>Connect</h4>
-          <a
-            href="https://github.com/priyanshuv3"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaGithub /> GitHub
-          </a>
           <a
             href="https://linkedin.com/in/priyanshuv3"
             target="_blank"
