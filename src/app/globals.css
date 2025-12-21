@@ -252,11 +252,6 @@ h4,
 h5,
 h6 {
   color: var(--color-heading);
-  margin-bottom: 0.5rem;
-}
-
-p {
-  margin-bottom: 1rem;
 }
 
 /* ================================================= */
@@ -267,15 +262,16 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--color-link-hover);
-  text-decoration: underline;
-}
-
 /* ================================================= */
 /* BUTTONS */
 /* ================================================= */
+/* Base button utility */
+.btn,
 button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
   background: var(--gradient-primary);
   color: var(--color-button-text);
   border: none;
@@ -284,24 +280,44 @@ button {
   font-size: var(--font-size-base);
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
+
   box-shadow: var(--shadow-sm);
   transition:
     transform var(--duration-fast) var(--ease-standard),
     opacity var(--duration-fast) var(--ease-standard),
     box-shadow var(--duration-fast) var(--ease-standard);
 }
-
+.btn:hover,
 button:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
-
 button:disabled {
   background: var(--color-button-disabled-bg);
   color: var(--color-button-disabled-text);
   cursor: not-allowed;
   box-shadow: none;
 }
+/* Primary */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--color-button-text);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary);
+  color: var(--color-black);
+}
+
 
 /* ================================================= */
 /* FORMS */
@@ -337,10 +353,9 @@ label {
 /* CARDS */
 /* ================================================= */
 .cardGrid {
-  width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -349,22 +364,21 @@ label {
   border: var(--color-card-border);
   padding: 2rem;
   border-radius: 16px;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(10px);
   transition: 0.3s ease;
-}
-.card h3{
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  color: var(--color-heading);
-}
-
-.card p {
-  line-height: 1.6;
-  opacity: 0.8;
+  width: 100%;
+  max-width: 400px;
 }
 .card:hover {
   transform: translateY(-5px);
   border-color: rgba(67, 200, 177, 0.45);
+}
+.card h3{
+  font-size: 1.5rem;
+}
+
+.card p {
+width: 100%;
 }
 
 

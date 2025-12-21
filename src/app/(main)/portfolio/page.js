@@ -1,37 +1,86 @@
 import Image from "next/image";
+import Script from "next/script";
 import styles from "./Portfolio.module.css";
-import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import {
+  FaTwitter,
+  FaEnvelope,
+  FaWhatsapp,
+  FaLinkedin,
+  FaLayerGroup,
+  FaShieldAlt,
+  FaVideo,
+  FaDatabase,
+  FaCloud,
+} from "react-icons/fa";
+
 import Typewriter from "./Typewriter";
 
 export default function Portfolio() {
   return (
     <>
+      <Script
+        id="ld-json"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Priyanshu Verma",
+            jobTitle: "Frontend Engineer",
+            url: "https://priyanshuverma-mocha.vercel.app/portfolio",
+            sameAs: [
+              "https://linkedin.com/in/priyanshuv3",
+              "https://x.com/priyanshuv3",
+            ],
+            knowsAbout: [
+              "React",
+              "Next.js",
+              "Web Performance",
+              "SSR",
+              "Frontend Architecture",
+              "ABR Streaming",
+            ],
+          }),
+        }}
+      />
       {/* HERO SECTION */}
       <section className={styles.heroSection}>
         <div className={styles.container}>
-          <div className={styles.leftBlock}>
-            <div className={styles.leftBlock}>
-              <h3 className={styles.smallText}>Hey, I'm</h3>
-
-              <h1 className={styles.mainTitleGradient}>
-                <Typewriter />
-              </h1>
+          {/* IMAGE ON LEFT */}
+          <div className={styles.rightBlock}>
+            <div className={styles.imageWrapper}>
+              <Image
+                src="/portfolio/me.png"
+                width={500}
+                height={600}
+                alt="Priyanshu Verma"
+                className={styles.heroImage}
+                priority
+              />
             </div>
+          </div>
 
-          <p className={styles.description}>
-            Frontend Engineer specializing in building high-performance, scalable web
-            systems. I own frontend architecture in production environments — from
-            complex UI systems and performance optimization to SEO, SSR/ISR strategies,
-            and secure admin platforms — with strong backend and infrastructure
-            understanding to design systems correctly end-to-end.
-          </p>
+          {/* TEXT ON RIGHT */}
+          <div className={styles.leftBlock}>
+            <h3 className={styles.smallText}>Hey, I'm</h3>
+
+            <h1 className={styles.mainTitleGradient}>
+              <Typewriter />
+            </h1>
+
+            <p className={styles.description}>
+              Frontend Engineer building production-grade React & Next.js
+              applications. I specialize in performance optimization, secure
+              admin platforms, adaptive bitrate streaming, and scalable UI
+              architecture with strong backend and infrastructure understanding.
+            </p>
 
             <div className={styles.buttonRow}>
-              <a href="#work" className={styles.primaryButton}>
-                View My Work
+              <a href="#production" className="btn btn-primary">
+                View Production Work
               </a>
-              <a href="#resume" className={styles.secondaryButton}>
-                My Resume
+              <a href="#contact" className="btn btn-secondary">
+                Contact Me
               </a>
             </div>
 
@@ -42,7 +91,7 @@ export default function Portfolio() {
                 rel="noreferrer"
                 className={styles.socialIcon}
               >
-                <FaXTwitter />
+                <FaTwitter />
               </a>
 
               <a
@@ -53,91 +102,241 @@ export default function Portfolio() {
               >
                 <FaLinkedin />
               </a>
-            </div>
-          </div>
-
-          <div className={styles.rightBlock}>
-            <div className={styles.imageWrapper}>
-              <Image
-                src="/portfolio/me.png"
-                width={500}
-                height={600}
-                alt="Priyanshu Verma"
-                className={styles.heroImage}
-                quality={100}
-                priority
-              />
+              <a
+                href="https://wa.me/917505273357"
+                target="_blank"
+                rel="noreferrer"
+                className={styles.socialIcon}
+              >
+                <FaWhatsapp />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ABOUT SECTION */}
-      <section id="about" className={styles.section}>
-        <h2 className={styles.sectionTitle}>About Me</h2>
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Technical Focus</h2>
 
         <p className={styles.sectionText}>
-          I’m a Full-Stack Developer focused on building modern web
-          architectures with an emphasis on security, scalability, and
-          performance. I design modular admin systems, real-time apps using
-          WebSockets, high-performance Next.js frontends, and reliable Django +
-          PostgreSQL backends. I also work with ABR streaming, caching layers,
-          CDN optimization, load testing with k6, and OpenTofu-based infra
-          automation.
+          I enjoy building systems that feel fast, reliable, and thoughtfully
+          engineered. My journey started with frontend development, but over
+          time I naturally moved closer to backend systems, performance, and
+          infrastructure — not to become a generalist, but to understand how
+          products work end-to-end.
+        </p>
+
+        <p className={styles.sectionText}>
+          This portfolio is a snapshot of what I’ve learned by building real
+          production systems, breaking things, fixing them, and improving them
+          iteratively.
         </p>
       </section>
 
-      {/* SKILLS SECTION */}
-      <section id="skills" className={styles.section}>
-        <h2 className={styles.sectionTitle}>Skills</h2>
+      {/* PRODUCTION SYSTEMS */}
+      <section id="production" className={styles.section}>
+        <h2 className={styles.sectionTitle}>Production Systems</h2>
 
         <div className="cardGrid">
           <div className="card">
-            <h3>Frontend Engineering</h3>
+            <h3>Artoreal</h3>
             <p>
-              Next.js, React.js, Redux Toolkit, React Query, Axios Interceptors,
-              Fabric.js, PWA, SEO, SSR/CSR/ISR, Tailwind
+              Customer-facing artwork platform built with Next.js (SSR, SEO).
             </p>
+            <a href="https://artoreal.com" target="_blank">
+              Visit →
+            </a>
           </div>
 
           <div className="card">
-            <h3>Backend & APIs</h3>
-            <p>
-              Django, DRF, JWT, Session Auth, WebSockets, Redis, Celery, robust
-              API design & security
-            </p>
+            <h3>Artoreal Artist</h3>
+            <p>Artist management dashboard built using React.js.</p>
+            <a href="https://artist.artoreal.com" target="_blank">
+              Visit →
+            </a>
           </div>
 
           <div className="card">
-            <h3>Database & System Design</h3>
+            <h3>Artoreal Studio</h3>
             <p>
-              PostgreSQL, Materialized Views, Triggers, PL/pgSQL, Query
-              Optimization, Caching Strategies
+              Fabric.js-powered image editor with PWA support and advanced
+              canvas workflows.
             </p>
+            <a href="https://studio.artoreal.com" target="_blank">
+              Visit →
+            </a>
           </div>
 
           <div className="card">
-            <h3>DevOps & Infrastructure</h3>
+            <h3>nSepia Admin</h3>
             <p>
-              OpenTofu/Terraform, k6 Load Testing, AWS (EC2, ECS, S3, VPC, Route 53,
-              CloudFront), CI/CD, Docker, Portainer
+              Secure internal admin system with RBAC, bot detection, and ABR
+              streaming.
             </p>
-          </div>
-
-          <div className="card">
-            <h3>Tools</h3>
-            <p>Git, GitHub, GitLab, Postman, Putty, pgAdmin, Lighthouse, VSCode</p>
+            <a href="https://nsepia.com" target="_blank">
+              Visit →
+            </a>
           </div>
         </div>
       </section>
 
-      {/* EXPERIENCE SECTION */}
+      {/* OWNERSHIP */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Areas of Ownership</h2>
+
+        <div className="cardGrid">
+          <div className="card">
+            <div className={styles.cardHeader}>
+              <FaLayerGroup className={styles.cardIcon} />
+              <h3>Frontend Architecture</h3>
+            </div>
+
+            <p>
+              Component-driven design, SSR/ISR strategies, SEO optimization,
+              predictable state management.
+            </p>
+
+            <a
+              href="https://nextjs.org/docs/pages/building-your-application/rendering"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.referenceLink}
+            >
+              Learn about SSR / ISR →
+            </a>
+          </div>
+
+          <div className="card">
+            <div className={styles.cardHeader}>
+              <FaShieldAlt className={styles.cardIcon} />
+              <h3>Security & Bot Protection</h3>
+            </div>
+
+            <p>
+              RBAC, protected routing, secure auth flows, Playwright-based
+              bot-detection validation.
+            </p>
+
+            <a
+              href="https://playwright.dev/docs/writing-tests"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.referenceLink}
+            >
+              Playwright E2E testing →
+            </a>
+          </div>
+
+          <div className="card">
+            <div className={styles.cardHeader}>
+              <FaVideo className={styles.cardIcon} />
+              <h3>Media & Performance</h3>
+            </div>
+
+            <p>
+              Adaptive Bitrate Streaming (HLS/DASH), Core Web Vitals,
+              Lighthouse-driven optimization.
+            </p>
+
+            <a
+              href="https://docs.aws.amazon.com/mediaconvert/latest/ug/choosing-your-streaming-output-groups.html"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.referenceLink}
+            >
+              What is ABR streaming →
+            </a>
+          </div>
+
+          <div className="card">
+            <div className={styles.cardHeader}>
+              <FaDatabase className={styles.cardIcon} />
+              <h3>Backend & Data</h3>
+            </div>
+
+            <p>
+              Django & DRF APIs, PostgreSQL optimization, Redis caching, Celery
+              background processing.
+            </p>
+
+            <a
+              href="https://docs.djangoproject.com/en/stable/"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.referenceLink}
+            >
+              Django documentation →
+            </a>
+          </div>
+
+          <div className="card">
+            <div className={styles.cardHeader}>
+              <FaCloud className={styles.cardIcon} />
+              <h3>Infrastructure</h3>
+            </div>
+
+            <p>
+              AWS deployments, Dockerized services, CI/CD pipelines,
+              OpenTofu-based IaC, k6 load testing.
+            </p>
+
+            <a
+              href="https://developer.hashicorp.com/terraform/intro"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.referenceLink}
+            >
+              Infrastructure as Code →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW I BUILD */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>System Design & Implementation</h2>
+
+        <p className={styles.sectionText}>
+          I approach systems with a performance-first and security-aware
+          mindset, choosing architecture and tooling based on real-world
+          constraints.
+        </p>
+
+        <div className="cardGrid">
+          <div className="card">
+            <h3>Design</h3>
+            <p>Modular UI, clear domain separation, predictable data flow.</p>
+          </div>
+
+          <div className="card">
+            <h3>Build</h3>
+            <p>
+              React/Next.js frontends, Django APIs, PostgreSQL + Redis for data.
+            </p>
+          </div>
+
+          <div className="card">
+            <h3>Optimize</h3>
+            <p>
+              Performance profiling, ABR streaming, CDN caching, query tuning.
+            </p>
+          </div>
+
+          <div className="card">
+            <h3>Validate</h3>
+            <p>
+              Playwright E2E testing, bot detection flows, load testing with k6.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section id="experience" className={styles.section}>
         <h2 className={styles.sectionTitle}>Experience</h2>
 
         <div className={styles.timeline}>
           <div className={styles.timelineItem}>
-            <h3>Nihilent Technology Ltd. — Full Stack Developer</h3>
+            <h3>Nihilent Technology Ltd. — Senior Software Engineer</h3>
             <p className={styles.timelineDuration}>Aug 2023 – Present</p>
             <ul>
               <li>
@@ -172,7 +371,7 @@ export default function Portfolio() {
           </div>
 
           <div className={styles.timelineItem}>
-            <h3>Salesforce Developer — Webkul</h3>
+            <h3>Webkul — Salesforce Developer — </h3>
             <p className={styles.timelineDuration}>Jan 2023 – Mar 2023</p>
             <ul>
               <li>
@@ -184,54 +383,42 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* PROJECTS SECTION */}
-      <section id="work" className={styles.section}>
-        <h2 className={styles.sectionTitle}>Projects</h2>
-
-        <div className="cardGrid">
-          <div className="card">
-            <h3>Enterprise Admin Panel (Next.js + Django)</h3>
-            <p>
-              Secure dashboard with RBAC, protected APIs, hybrid SSR/CSR
-              rendering, caching layers, audit logs, and modular
-              production-grade architecture.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3>Emotion-Based Recommender System</h3>
-            <p>
-              Real-time recommendation engine built with Django Channels,
-              WebSockets, OpenCV emotion signals, weighted sentiment scoring,
-              and rule-based logic.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3>Fabric.js Studio (PWA)</h3>
-            <p>
-              Full design editor with layers, canvas tools, transformations,
-              auto-collage, asset library, and PWA-level performance.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3>OCR Handwritten Code Compiler</h3>
-            <p>
-              Converts handwritten code into executable output using OCR,
-              parsing, and dynamic code execution logic.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
+      {/* CONTACT */}
       <section id="contact" className={styles.section}>
         <h2 className={styles.sectionTitle}>Contact</h2>
+
         <p className={styles.sectionText}>
-          Looking for collaboration, hiring, or a project discussion? I&apos;m
-          always open to meaningful conversations.
+          Open to frontend roles, full-stack opportunities, and meaningful
+          product collaborations. Feel free to reach out through any channel
+          below.
         </p>
+
+        <div className={styles.contactActions}>
+          <a href="mailto:priyanshuvhj3@gmail.com" className="btn btn-primary">
+            <FaEnvelope />
+            <span>Email</span>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/priyanshuv3"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-secondary"
+          >
+            <FaLinkedin />
+            <span>LinkedIn</span>
+          </a>
+
+          <a
+            href="https://wa.me/917505273357"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-secondary"
+          >
+            <FaWhatsapp />
+            <span>WhatsApp</span>
+          </a>
+        </div>
       </section>
     </>
   );
