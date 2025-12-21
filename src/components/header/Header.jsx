@@ -1,22 +1,32 @@
-'use client';
+"use client";
 
-import styles from './header.module.css';
-import { useState } from 'react';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
+import styles from "./header.module.css";
+import { useState } from "react";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { FiMoon, FiSun } from "react-icons/fi";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const headerTitle = pathname === "/portfolio" ? "Portfolio" : "Brahmastra";
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <Link href="/" className={styles.brand}>Brahmastra</Link>
+        {headerTitle === "Portfolio" ? (
+          <span className={styles.brand}>Portfolio</span>
+        ) : (
+          <Link href="/" className={styles.brand}>
+            Brahmastra
+          </Link>
+        )}
       </div>
 
       {/* Desktop nav */}
@@ -25,8 +35,12 @@ export default function Header() {
         <Link href="/tools">Tools</Link>
         <Link href="/login">Sign Up</Link>
 
-        <button onClick={toggleTheme} className={styles.themeToggle}>
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+        <button
+          onClick={toggleTheme}
+          className="btn-minimal"
+          aria-label="Toggle theme"
+        >
+          {theme === "light" ? <FiMoon /> : <FiSun />}
         </button>
       </nav>
 
@@ -42,18 +56,24 @@ export default function Header() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/tools" onClick={() => setMenuOpen(false)}>Tools</Link>
-          <Link href="/login" onClick={() => setMenuOpen(false)}>Sign up</Link>
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
+          <Link href="/tools" onClick={() => setMenuOpen(false)}>
+            Tools
+          </Link>
+          <Link href="/login" onClick={() => setMenuOpen(false)}>
+            Sign up
+          </Link>
 
           <button
             onClick={() => {
               toggleTheme();
               setMenuOpen(false);
             }}
-            className={styles.themeToggle}
+            className="btn-minimal"
           >
-            {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+            {theme === "light" ? <FiMoon /> : <FiSun />}
           </button>
         </div>
       )}

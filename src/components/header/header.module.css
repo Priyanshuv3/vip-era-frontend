@@ -52,16 +52,6 @@
   border-radius: 6px;
 }
 
-/* Theme toggle button */
-.themeToggle {
-  background-color: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
 
 /* Responsive behavior */
 @media (max-width: 768px) {
