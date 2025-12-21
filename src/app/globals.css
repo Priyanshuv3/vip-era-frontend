@@ -6,6 +6,9 @@
   --color-primary: #007a66;
   --color-primary-hover: #009478;
 
+  --color-card-bg: rgba(67, 200, 177, 0.05);
+  --color-card-border: 1px solid rgba(67, 200, 177, 0.18);
+
   --color-accent-teal: #0ea37a;
   --color-accent-deep-teal: #114843;
   --color-accent-purple: #6c4cff;
@@ -333,17 +336,37 @@ label {
 /* ================================================= */
 /* CARDS */
 /* ================================================= */
-.card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-xs);
-  transition:
-    background-color var(--duration-medium) var(--ease-standard),
-    border-color var(--duration-medium) var(--ease-standard),
-    box-shadow var(--duration-medium) var(--ease-standard);
+.cardGrid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
+
+.card {
+  background-color: var(--color-card-bg);
+  border: var(--color-card-border);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+.card h3{
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+.card p {
+  line-height: 1.6;
+  opacity: 0.8;
+}
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(67, 200, 177, 0.45);
+}
+
 
 /* ================================================= */
 /* UTILITIES */
