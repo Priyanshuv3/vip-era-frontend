@@ -281,7 +281,7 @@ button {
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-
+  max-width: fit-content;
   box-shadow: var(--shadow-sm);
   transition:
     transform var(--duration-fast) var(--ease-standard),

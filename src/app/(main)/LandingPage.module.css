@@ -136,8 +136,7 @@
 
 /* WHY */
 .whySection,
-.howSection,
-.ctaSection {
+.howSection {
   padding: 6rem 2rem;
   text-align: center;
 }
@@ -376,8 +375,7 @@
 
   /* WHY / HOW */
   .whySection,
-  .howSection,
-  .ctaSection {
+  .howSection {
     padding: 4rem 1.5rem;
   }
 
@@ -394,11 +392,6 @@
 
   .portfolioImage {
     max-width: 240px;
-  }
-
-  /* CTA */
-  .ctaSection h2 {
-    font-size: 2rem;
   }
 }
 

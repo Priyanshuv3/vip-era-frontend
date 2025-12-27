@@ -46,7 +46,7 @@ export default function LandingPage() {
               <a href="/tools" className={styles.primaryBtn}>
                 Explore Tools
               </a>
-              <a href="/portfolio" className={styles.secondaryBtn}>
+              <a href="/portfolio" className="btn btn-secondary">
                 About the Creator
               </a>
             </div>
@@ -136,7 +136,7 @@ export default function LandingPage() {
               <div>🛠 Actively Maintained</div>
             </div>
 
-            <a href="/portfolio" className={styles.secondaryBtn}>
+            <a href="/portfolio" className="btn btn-secondary">
               About the Creator →
             </a>
           </div>
@@ -149,43 +149,33 @@ export default function LandingPage() {
       </section>
 
       {/* ================= AUTH ================= */}
-<section className={styles.authSection}>
-  <div className={styles.authCard}>
-    <div className={styles.authContent}>
-      <h2 className={styles.sectionTitle}>
-        Create an Account (Optional)
-      </h2>
+      <section className={styles.authSection}>
+        <div className={styles.authCard}>
+          <div className={styles.authContent}>
+            <h2 className={styles.sectionTitle}>
+              Create an Account (Optional)
+            </h2>
 
-      <p className={styles.authText}>
-        You can use all tools without signing up.
-        Create an account only if you want to save preferences,
-        access future features, or manage your activity.
-      </p>
+            <p className={styles.authText}>
+              You can use all tools without signing up. Create an account only
+              if you want to save preferences, access future features, or manage
+              your activity.
+            </p>
 
-      <div className={styles.authActions}>
-        <a href="/login" className={styles.secondaryBtn}>
-          Log In
-        </a>
-        <a href="/login" className={styles.primaryBtn}>
-          Sign Up
-        </a>
-      </div>
+            <div className={styles.authActions}>
+              <a href="/login" className="btn btn-secondary">
+                Log In
+              </a>
+              <a href="/login" className={styles.primaryBtn}>
+                Sign Up
+              </a>
+            </div>
 
-      <p className={styles.authNote}>
-        No spam · No forced upgrades · Always optional
-      </p>
-    </div>
-  </div>
-</section>
-
-
-      {/* ================= CTA ================= */}
-      <section className={styles.ctaSection}>
-        <h2>Start Using Tools Instantly</h2>
-        <p>No installs. No sign-ups. Just productivity.</p>
-        <a href="#tools" className={styles.primaryBtn}>
-          Explore Tools
-        </a>
+            <p className={styles.authNote}>
+              No spam · No forced upgrades · Always optional
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   );
