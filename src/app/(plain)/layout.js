@@ -1,3 +1,4 @@
+import { PlainHeader } from "@/components";
 import PropTypes from "prop-types";
 
 export const metadata = {
@@ -7,7 +8,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-      <main>{children}</main>
+      <main>
+        <PlainHeader />
+        {children}</main>
   );
 }
 

@@ -1,5 +1,6 @@
 import Login from "./login/Login";
 import Header from "./header/Header";
+import PlainHeader from "./header/PlainHeader";
 import Footer from "./footer/Footer";
 import Loader from "./Loader/Loader";
 import MessageModal from "./MessageModal/MessageModal";
@@ -10,6 +11,7 @@ import TypingStrings from "./TypingStrings/TypingStrings";
 export {
     Login,
     Header,
+    PlainHeader,
     Footer,
     Loader,
     MessageModal,
