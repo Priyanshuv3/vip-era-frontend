@@ -30,7 +30,10 @@ export default function NotebookCanvas({ notebook, goBack }) {
   const [notebookData, setNotebookData] = useState(notebook)
   const [editingTextId, setEditingTextId] = useState(null) // Track which text block is being edited
   const [editingText, setEditingText] = useState("") // Store the edited text temporarily
+  const [isPageEditMode, setIsPageEditMode] = useState(false) // Full page edit mode
+  const [pageEditContent, setPageEditContent] = useState("") // Entire page content for editing
   const editInputRef = useRef(null) // Ref for input field
+  const pageEditRef = useRef(null) // Ref for textarea
 
   const drawingRef = useRef(false)
 
@@ -84,6 +87,73 @@ export default function NotebookCanvas({ notebook, goBack }) {
       editInputRef.current.select()
     }
   }, [editingTextId])
+
+  // Focus textarea when entering page edit mode
+  useEffect(() => {
+    if (isPageEditMode && pageEditRef.current) {
+      pageEditRef.current.focus()
+    }
+  }, [isPageEditMode])
+
+  // Re-render canvas when exiting edit mode
+  useEffect(() => {
+    if (!isPageEditMode) {
+      // Force canvas redraw
+      const canvas = canvasRef.current
+      if (canvas) {
+        const ctx = canvas.getContext("2d")
+        const rect = canvas.getBoundingClientRect()
+        ctx.clearRect(0, 0, rect.width, rect.height)
+      }
+    }
+  }, [isPageEditMode])
+
+  // Handle entering full page edit mode
+  function enterPageEditMode() {
+    const allText = currentPage.textContent
+      ? currentPage.textContent.map(tb => tb.text).join('\n')
+      : ''
+    setPageEditContent(allText)
+    setIsPageEditMode(true)
+    // Clear strokes when entering edit mode
+    setStrokes([])
+    setPoints([])
+    setRedoStack([])
+  }
+
+  // Handle saving full page edit
+  function savePageEdit() {
+    const lines = pageEditContent.split('\n').filter(line => line.trim().length > 0)
+    
+    setNotebookData((prevData) => {
+      const updatedPages = [...prevData.pages]
+      const newTextContent = lines.map((line, index) => ({
+        id: uuidv4(),
+        text: line,
+        x: 80,
+        y: 30 + (index * 50),
+        color: color,
+      }))
+      
+      updatedPages[currentPageIndex] = {
+        ...updatedPages[currentPageIndex],
+        textContent: newTextContent,
+        strokes: [], // Clear strokes when saving
+      }
+      
+      const updated = { ...prevData, pages: updatedPages }
+      updateNotebook(updated)
+      return updated
+    })
+    
+    setIsPageEditMode(false)
+    setPageEditContent('')
+    setEditingTextId(null)
+    // Reset drawing state
+    setStrokes([])
+    setPoints([])
+    setRedoStack([])
+  }
   const performOCR = useCallback(async (strokesData) => {
     if (
       strokesData.length === 0 ||
@@ -433,28 +503,34 @@ export default function NotebookCanvas({ notebook, goBack }) {
   function getPageBackgroundLayers() {
     const pageType = notebookData.type || "blank"
     const patterns = {
-      blank: "none",
+      blank: `linear-gradient(
+        to right,
+        #ffe8e8 0,
+        #ffe8e8 70px,
+        transparent 70px,
+        transparent 100%
+      )`,
       lined: `repeating-linear-gradient(
         to bottom,
         transparent,
-        transparent 28px,
-        #ddd 28px,
-        #ddd 29px
+        transparent 32px,
+        #d0d0d0 32px,
+        #d0d0d0 33px
       ), linear-gradient(
         to right,
-        #ffcccc 0,
-        #ffcccc 60px,
-        transparent 60px,
+        #ffe8e8 0,
+        #ffe8e8 70px,
+        transparent 70px,
         transparent 100%
       )`,
-      grid: `linear-gradient(#e0e0e0 1px, transparent 1px),
-      linear-gradient(to right, #e0e0e0 1px, transparent 1px)`,
+      grid: `linear-gradient(#e8e8e8 1px, transparent 1px),
+      linear-gradient(to right, #e8e8e8 1px, transparent 1px)`,
     }
 
     return {
       backgroundImage: patterns[pageType],
-      backgroundSize: pageType === "grid" ? "30px 30px" : "auto",
-      backgroundColor: pageType === "blank" ? "#ffffff" : "#fafaf8",
+      backgroundSize: pageType === "grid" ? "35px 35px" : "auto",
+      backgroundColor: pageType === "blank" ? "#fafaf8" : "#f9f9f7",
     }
   }
 
@@ -489,7 +565,13 @@ export default function NotebookCanvas({ notebook, goBack }) {
       <div className={styles.editorHeader}>
         <button onClick={goBack}>← Back</button>
         <h3>{notebookData.title}</h3>
-        <span></span>
+        <button 
+          className={styles.editAllBtn}
+          onClick={isPageEditMode ? savePageEdit : enterPageEditMode}
+          title={isPageEditMode ? "Save" : "Edit all text"}
+        >
+          {isPageEditMode ? "✓ Save" : "✎ Edit All"}
+        </button>
       </div>
 
       <div className={styles.canvasWrapper}>
@@ -498,6 +580,7 @@ export default function NotebookCanvas({ notebook, goBack }) {
           ref={containerRef}
           style={getPageBackgroundLayers()}
         >
+          {/* Always render canvas and text layer to keep refs stable */}
           <canvas
             ref={canvasRef}
             onMouseDown={startDraw}
@@ -507,6 +590,7 @@ export default function NotebookCanvas({ notebook, goBack }) {
             onTouchStart={startDraw}
             onTouchMove={draw}
             onTouchEnd={endDraw}
+            className={isPageEditMode ? styles.canvasHidden : ""}
             style={{
               width: "100%",
               height: "100%",
@@ -518,7 +602,23 @@ export default function NotebookCanvas({ notebook, goBack }) {
             }}
           />
 
-          <div className={styles.textLayer}>{renderText()}</div>
+          {/* Text layer */}
+          <div className={`${styles.textLayer} ${isPageEditMode ? styles.textLayerHidden : ""}`}>
+            {renderText()}
+          </div>
+
+          {/* Full page edit mode overlay - shown on top */}
+          {isPageEditMode && (
+            <div className={styles.pageEditOverlay}>
+              <textarea
+                ref={pageEditRef}
+                className={styles.pageTextarea}
+                value={pageEditContent}
+                onChange={(e) => setPageEditContent(e.target.value)}
+                placeholder="Type or edit your text here..."
+              />
+            </div>
+          )}
 
           <div className={styles.pageNumber}>
             Page {currentPageIndex + 1}
