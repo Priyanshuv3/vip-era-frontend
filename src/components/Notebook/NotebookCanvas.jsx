@@ -248,7 +248,7 @@ export default function NotebookCanvas({ notebook, goBack }) {
       setIsRecognizing(false)
       setRecognizingText("")
     }
-  }, [currentPageIndex, currentLineY])
+  }, [currentPageIndex, currentLineY, color])
 
   // Update the ref so debounce always has the latest performOCR
   useEffect(() => {
