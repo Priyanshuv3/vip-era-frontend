@@ -16,6 +16,12 @@ export const landing_tools = {
 
   tools: [
     {
+      title: "Digital Notebook",
+      description: "Write, draw, and convert handwriting to text with AI.",
+      Icon: FunIcon,
+      href: "/notebook",
+    },
+    {
       title: "Image Tools",
       description: "Edit, convert, compress, and enhance images online.",
       Icon: ImageIcon,

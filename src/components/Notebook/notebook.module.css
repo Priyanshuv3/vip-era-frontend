@@ -1,0 +1,469 @@
+.home{
+ padding:30px;
+}
+
+.createNewBtn {
+ padding: 12px 24px;
+ background: var(--color-primary);
+ color: white;
+ border: none;
+ border-radius: 8px;
+ font-size: 1rem;
+ font-weight: 600;
+ cursor: pointer;
+ margin-bottom: 30px;
+ transition: all 150ms ease;
+}
+
+.createNewBtn:hover {
+ background: var(--color-primary-hover);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 12px rgba(0, 122, 102, 0.3);
+}
+
+.creatorForm {
+ background: white;
+ border: 1px solid #ddd;
+ border-radius: 12px;
+ padding: 24px;
+ margin-bottom: 30px;
+ max-width: 500px;
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.creatorForm input {
+ width: 100%;
+ padding: 12px;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ font-size: 1rem;
+ margin-bottom: 20px;
+}
+
+.typeSelector {
+ margin-bottom: 20px;
+}
+
+.typeSelector label {
+ display: block;
+ font-weight: 600;
+ margin-bottom: 10px;
+ color: #333;
+}
+
+.typeOptions {
+ display: flex;
+ gap: 10px;
+}
+
+.typeOption {
+ flex: 1;
+ padding: 10px;
+ border: 2px solid #ddd;
+ background: white;
+ border-radius: 8px;
+ cursor: pointer;
+ font-weight: 500;
+ transition: all 150ms ease;
+}
+
+.typeOption:hover {
+ border-color: var(--color-primary);
+}
+
+.typeOption.active {
+ border-color: var(--color-primary);
+ background: var(--color-primary);
+ color: white;
+}
+
+.creatorActions {
+ display: flex;
+ gap: 10px;
+ justify-content: flex-end;
+}
+
+.cancelBtn,
+.createBtn {
+ padding: 10px 20px;
+ border: none;
+ border-radius: 8px;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 150ms ease;
+}
+
+.cancelBtn {
+ background: #f0f0f0;
+ color: #333;
+}
+
+.cancelBtn:hover {
+ background: #e0e0e0;
+}
+
+.createBtn {
+ background: var(--color-primary);
+ color: white;
+}
+
+.createBtn:hover {
+ background: var(--color-primary-hover);
+ transform: translateY(-1px);
+ box-shadow: 0 2px 8px rgba(0, 122, 102, 0.3);
+}
+
+.notebookList{
+ display:flex;
+ gap:15px;
+ flex-wrap:wrap;
+}
+
+.notebookCard{
+ padding:20px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ cursor:pointer;
+ position: relative;
+ transition: all 150ms ease;
+}
+
+.notebookCard:hover {
+ border-color: var(--color-primary);
+ box-shadow: 0 4px 12px rgba(0, 122, 102, 0.15);
+ transform: translateY(-2px);
+}
+
+.notebookCard h3 {
+ margin: 0 0 8px;
+}
+
+.deleteBtn {
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ background: transparent !important;
+ border: none !important;
+ padding: 5px !important;
+ cursor: pointer;
+ font-size: 1.2rem;
+ opacity: 0;
+ transition: opacity 150ms ease;
+}
+
+.notebookCard:hover .deleteBtn {
+ opacity: 1;
+}
+
+.deleteBtn:hover {
+ transform: scale(1.2) !important;
+}
+
+.editor{
+ display:flex;
+ flex-direction:column;
+ height:100vh;
+}
+
+.editorHeader{
+ padding:10px;
+ border-bottom:1px solid #ddd;
+ display:flex;
+ justify-content:space-between;
+}
+
+.canvasWrapper{
+  height: calc(100vh - 140px);
+  padding-bottom: 80px;
+}
+
+.toolbar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  height: 70px;
+
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  z-index: var(--z-overlay);
+  padding: 0 15px;
+  overflow-x: auto;
+}
+
+.toolbar button {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 150ms ease;
+  height: 45px;
+  min-width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar button:hover:not(:disabled) {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar button.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.toolbar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.colorPicker {
+  width: 45px !important;
+  height: 45px;
+  padding: 2px !important;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.colorButton {
+  width: 45px !important;
+  height: 45px !important;
+  min-width: 45px;
+  padding: 0 !important;
+  border: 2px solid #999;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 150ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.colorButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.colorButton.active {
+  border-color: #333;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.nextLineBtn {
+  font-size: 0.9rem !important;
+  padding: 10px 15px !important;
+  min-width: auto !important;
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+  background: #ddd;
+}
+
+.undoBtn,
+.redoBtn {
+  font-size: 1.1rem;
+}
+/* ============ PAGE CONTAINER ============ */
+.pageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white;
+  overflow: hidden;
+}
+
+.pageNumber {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 0.85rem;
+  color: #999;
+  font-weight: 500;
+}
+
+/* ============ CANVAS LAYER ============ */
+.canvasLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/* ============ TEXT LAYER ============ */
+.textLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.textBlock {
+  position: absolute;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #000;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 90%;
+}
+
+/* ============ PAGE PAGINATION ============ */
+.paginationContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 20;
+}
+
+.pageNavButton {
+  padding: 8px 12px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 150ms ease;
+}
+
+.pageNavButton:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pageNavButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ============ PAGE FLIP BOOK ============ */
+.flipBookPage {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background: white;
+  overflow: hidden;
+}
+
+/* ============ RECOGNITION INDICATOR ============ */
+.recognitionIndicator {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: var(--color-primary);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0, 122, 102, 0.3);
+  z-index: 150;
+  font-weight: 500;
+  animation: slideInUp 0.3s ease;
+}
+
+/* ============ CONVERSION PROGRESS BAR (TOP) ============ */
+.conversionProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #f0f0f0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), #1a9d7e);
+  animation: progressPulse 1s ease-in-out infinite;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.recognizingTextPreview {
+  position: fixed;
+  top: 8px;
+  left: 20px;
+  font-size: 0.75rem;
+  color: #666;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  z-index: 201;
+}
+
+@keyframes progressPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
