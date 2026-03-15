@@ -89,16 +89,36 @@ export default function NotebookHome(){
               style={{ textDecoration: 'none' }}
             >
               <div className={styles.notebookCard}>
-                <h3>{nb.title}</h3>
-                <p style={{ fontSize: '0.85rem', color: '#999', marginTop: '8px' }}>
-                  {nb.type} • {nb.pages?.length || 1} pages
-                </p>
+                {/* Notebook Cover */}
+                <div className={styles.notebookCover}>
+                  {/* Spine effect */}
+                  <div className={styles.notebookSpine}></div>
+                  
+                  {/* Cover content */}
+                  <div className={styles.coverContent}>
+                    <h3 className={styles.notebookTitle}>{nb.title}</h3>
+                    <div className={styles.pageTypeIndicator}>
+                      <span className={styles.pageTypeIcon}>
+                        {nb.type === 'lined' ? '≡' : nb.type === 'grid' ? '⊞' : '⬚'}
+                      </span>
+                      <span className={styles.pageTypeLabel}>{nb.type}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Page count badge */}
+                  <div className={styles.pageCountBadge}>
+                    <span className={styles.pageCount}>{nb.pages?.length || 1}</span>
+                    <span className={styles.pageLabel}>pages</span>
+                  </div>
+                </div>
+
+                {/* Delete button */}
                 <button
                   className={styles.deleteBtn}
                   onClick={(e) => handleDeleteNotebook(nb.id, e)}
                   title="Delete notebook"
                 >
-                  🗑️
+                  ✕
                 </button>
               </div>
             </Link>

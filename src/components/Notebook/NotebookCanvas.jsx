@@ -28,6 +28,9 @@ export default function NotebookCanvas({ notebook, goBack }) {
   const [isRecognizing, setIsRecognizing] = useState(false)
   const [recognizingText, setRecognizingText] = useState("") // Text being recognized
   const [notebookData, setNotebookData] = useState(notebook)
+  const [editingTextId, setEditingTextId] = useState(null) // Track which text block is being edited
+  const [editingText, setEditingText] = useState("") // Store the edited text temporarily
+  const editInputRef = useRef(null) // Ref for input field
 
   const drawingRef = useRef(false)
 
@@ -74,7 +77,13 @@ export default function NotebookCanvas({ notebook, goBack }) {
     }
   }, [])
 
-  // Debounced handwriting processor - automatic OCR
+  // Auto-focus and select all text when editing starts
+  useEffect(() => {
+    if (editInputRef.current) {
+      editInputRef.current.focus()
+      editInputRef.current.select()
+    }
+  }, [editingTextId])
   const performOCR = useCallback(async (strokesData) => {
     if (
       strokesData.length === 0 ||
@@ -144,6 +153,7 @@ export default function NotebookCanvas({ notebook, goBack }) {
             x: newX,
             y: newY,
             lineNumber: newTextContent.length,
+            color: color,
           })
 
           // Update notebook with new text
@@ -354,7 +364,7 @@ export default function NotebookCanvas({ notebook, goBack }) {
     })
   }, [points, strokes, tool, color])
 
-  // Render text content
+  // Render text content with edit capability
   function renderText() {
     if (!currentPage.textContent) return null
 
@@ -365,9 +375,57 @@ export default function NotebookCanvas({ notebook, goBack }) {
         style={{
           left: `${textBlock.x}px`,
           top: `${textBlock.y}px`,
+          color: textBlock.color || "#2563eb",
         }}
       >
-        {textBlock.text}
+        {editingTextId === textBlock.id ? (
+          <input
+            ref={editInputRef}
+            type="text"
+            value={editingText}
+            onChange={(e) => setEditingText(e.target.value)}
+            onBlur={() => {
+              // Save the edited text
+              setNotebookData((prevData) => {
+                const updatedPages = [...prevData.pages]
+                const textContent = updatedPages[currentPageIndex].textContent.map((tb) =>
+                  tb.id === textBlock.id ? { ...tb, text: editingText } : tb
+                )
+                updatedPages[currentPageIndex] = {
+                  ...updatedPages[currentPageIndex],
+                  textContent,
+                }
+                const updated = { ...prevData, pages: updatedPages }
+                updateNotebook(updated)
+                return updated
+              })
+              setEditingTextId(null)
+              setEditingText("")
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.currentTarget.blur()
+              }
+            }}
+            className={styles.textInput}
+            style={{ 
+              borderColor: textBlock.color || "#2563eb", 
+              color: textBlock.color || "#2563eb",
+              width: Math.max(200, editingText.length * 8 + 20) + "px"
+            }}
+          />
+        ) : (
+          <span
+            onClick={() => {
+              setEditingTextId(textBlock.id)
+              setEditingText(textBlock.text)
+            }}
+            style={{ cursor: "pointer", color: textBlock.color || "#2563eb" }}
+            title="Click to edit"
+          >
+            {textBlock.text}
+          </span>
+        )}
       </div>
     ))
   }

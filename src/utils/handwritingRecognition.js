@@ -30,8 +30,7 @@ export async function recognizeHandwriting(canvas) {
 }
 
 /**
- * Pre-process image for better OCR accuracy
- * Increases contrast, converts to black and white
+ * Pre-process image for better OCR accuracy using multiple techniques
  * @param {Canvas} canvas - Canvas to process
  * @returns {Canvas} Processed canvas
  */
@@ -42,41 +41,126 @@ function preprocessCanvasForOCR(canvas) {
 
   const ctx = processedCanvas.getContext("2d")
   
-  // Copy the image from input canvas first
+  // Copy the image from input canvas
   ctx.drawImage(canvas, 0, 0)
   
   // Get image data
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-  const data = imageData.data
+  let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  let data = imageData.data
 
-  // Convert to grayscale and increase contrast
+  // Step 1: Convert to grayscale
   for (let i = 0; i < data.length; i += 4) {
     const r = data[i]
     const g = data[i + 1]
     const b = data[i + 2]
-    const a = data[i + 3]
 
-    // Skip fully transparent pixels
-    if (a === 0) continue
-
-    // Convert to grayscale
     const gray = r * 0.299 + g * 0.587 + b * 0.114
+    data[i] = gray
+    data[i + 1] = gray
+    data[i + 2] = gray
+  }
 
-    // Aggressive contrast boost for better OCR
-    let contrast = (gray - 128) * 3 + 128
-    contrast = Math.max(0, Math.min(255, contrast))
+  // Step 2: Apply Gaussian blur to reduce noise
+  imageData = applyGaussianBlur(ctx, imageData, 2)
+  data = imageData.data
 
-    // Lower threshold for better text detection (150 instead of 180)
-    const threshold = contrast > 150 ? 255 : 0
+  // Step 3: Apply contrast stretching + aggressive threshold
+  for (let i = 0; i < data.length; i += 4) {
+    const gray = data[i]
+    
+    // More aggressive contrast - push values to extremes
+    let contrast = 0
+    if (gray < 100) {
+      contrast = 0  // Very dark = black
+    } else if (gray > 150) {
+      contrast = 255 // Light = white (background)
+    } else {
+      // For mid-tones, use aggressive stretching
+      contrast = (gray - 100) * 4 // Stretch the range
+      contrast = Math.max(0, Math.min(255, contrast))
+      contrast = contrast > 128 ? 255 : 0
+    }
 
-    data[i] = threshold     // R
-    data[i + 1] = threshold // G
-    data[i + 2] = threshold // B
-    data[i + 3] = 255       // A
+    data[i] = contrast
+    data[i + 1] = contrast
+    data[i + 2] = contrast
   }
 
   ctx.putImageData(imageData, 0, 0)
   return processedCanvas
+}
+
+/**
+ * Apply simple Gaussian blur to image data
+ */
+function applyGaussianBlur(ctx, imageData, radius) {
+  const width = imageData.width
+  const height = imageData.height
+  const data = imageData.data
+
+  const kernel = createGaussianKernel(radius)
+  const newData = new Uint8ClampedArray(data)
+
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      let r = 0, g = 0, b = 0, a = 0, count = 0
+
+      for (let ki = -radius; ki <= radius; ki++) {
+        for (let kj = -radius; kj <= radius; kj++) {
+          const ni = i + ki
+          const nj = j + kj
+
+          if (ni >= 0 && ni < height && nj >= 0 && nj < width) {
+            const idx = (ni * width + nj) * 4
+            const weight = kernel[ki + radius][kj + radius]
+            
+            r += data[idx] * weight
+            g += data[idx + 1] * weight
+            b += data[idx + 2] * weight
+            a += data[idx + 3] * weight
+            count += weight
+          }
+        }
+      }
+
+      const idx = (i * width + j) * 4
+      if (count > 0) {
+        newData[idx] = r / count
+        newData[idx + 1] = g / count
+        newData[idx + 2] = b / count
+        newData[idx + 3] = a / count
+      }
+    }
+  }
+
+  return new ImageData(newData, width, height)
+}
+
+/**
+ * Create Gaussian kernel for blur
+ */
+function createGaussianKernel(radius) {
+  const kernel = []
+  const sigma = radius / 2
+  let sum = 0
+
+  for (let i = -radius; i <= radius; i++) {
+    kernel[i + radius] = []
+    for (let j = -radius; j <= radius; j++) {
+      const value = Math.exp(-(i * i + j * j) / (2 * sigma * sigma))
+      kernel[i + radius][j + radius] = value
+      sum += value
+    }
+  }
+
+  // Normalize
+  for (let i = 0; i < kernel.length; i++) {
+    for (let j = 0; j < kernel[i].length; j++) {
+      kernel[i][j] /= sum
+    }
+  }
+
+  return kernel
 }
 
 /**
@@ -115,10 +199,10 @@ export async function extractTextFromStrokes(strokes, width, height) {
     ctx.fillStyle = "white"
     ctx.fillRect(0, 0, width, height)
 
-    // Draw all strokes with darker color for better OCR
+    // Draw all strokes with thicker lines for better OCR
     strokes.forEach((stroke) => {
       const outline = getStroke(stroke.points, {
-        size: stroke.size,
+        size: stroke.size * 1.5, // Make strokes 50% thicker for OCR
         thinning: 0.6,
         smoothing: 0.7,
         streamline: 0.4,
@@ -135,6 +219,26 @@ export async function extractTextFromStrokes(strokes, width, height) {
 
       ctx.closePath()
       ctx.fill()
+    })
+
+    // Apply line width stroke for extra boldness
+    ctx.lineWidth = 2
+    ctx.lineCap = "round"
+    ctx.lineJoin = "round"
+    ctx.strokeStyle = "#000000"
+    
+    strokes.forEach((stroke) => {
+      const points = stroke.points
+      if (points.length < 2) return
+      
+      ctx.beginPath()
+      ctx.moveTo(points[0][0], points[0][1])
+      
+      for (let i = 1; i < points.length; i++) {
+        ctx.lineTo(points[i][0], points[i][1])
+      }
+      
+      ctx.stroke()
     })
     
     // Pre-process canvas for better OCR
